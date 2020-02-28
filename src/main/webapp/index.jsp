@@ -9,6 +9,14 @@
 
         <div class="container">
 
+            <div style="height:10vh;"></div>
+
+            <%-- Search Bar --%>
+            <form class="form-inline" style="max-width:350;margin:auto;">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
         </div>
 
         <jsp:include page="layouts/footer.jsp" />
