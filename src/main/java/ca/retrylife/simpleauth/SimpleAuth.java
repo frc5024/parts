@@ -4,7 +4,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.crypto.SecretKeyFactory;
@@ -79,11 +81,39 @@ public class SimpleAuth {
 		KeySpec spec = new PBEKeySpec(password, salt, iterations, HASH_SIZE);
 		SecretKeyFactory f = SecretKeyFactory.getInstance(ALGORITHM);
 		return f.generateSecret(spec).getEncoded();
-		
+
 	}
 
+	/**
+	 * Check if a password matches it's hash
+	 * @param data Password
+	 * @param hash Hash
+	 * @return Matches?
+	 */
 	public boolean isValid(String data, String hash) {
-		return false;
+		Matcher m = HASH_LAYOUT.matcher(hash);
+
+		if (!m.matches()) {
+			SimpleLogger.log("SimpleAuth", "Hash does not match scheme: " + ALGORITHM);
+			return false;
+		}
+
+		int iterations = 1 << (Integer.parseInt(m.group(1)));
+		byte[] h = Base64.getUrlDecoder().decode(m.group(2));
+		byte[] salt = Arrays.copyOfRange(h, 0, HASH_SIZE / 8);
+
+		byte[] check = null;
+		try {
+			check = pbkdf2(data.toCharArray(), salt, iterations);
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			SimpleLogger.log("SimpleAuth", "Failed to hash a string");
+			return false;
+		}
+
+		int zero = 0;
+		for (int idx = 0; idx < check.length; ++idx)
+			zero |= h[salt.length + idx] ^ check[idx];
+		return zero == 0;
 	}
 
 }
