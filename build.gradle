@@ -4,7 +4,7 @@ plugins {
 
     // Add the servlet plugin
     id 'war'
-    id 'org.gretty' version '2.2.0'
+    id 'org.gretty' version '2.3.1'
 
     // Apply the application plugin to add support for building an application
     id 'application'
