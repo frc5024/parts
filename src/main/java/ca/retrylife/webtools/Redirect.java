@@ -9,7 +9,7 @@ public class Redirect {
         
         // Build an HTML redirector
         String doc = String.format(
-                "<head><title>Redirecting</title></head><body><p>Redirecting to %s</p><script>document.location = '%s';</script></body>", dest, dest);
+                "<head><title>Redirecting</title><meta http-equiv='Refresh' content='0; url=%s' /></head><body></body>", dest);
 
 
         // Write to response

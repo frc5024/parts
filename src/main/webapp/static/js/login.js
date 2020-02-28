@@ -1,0 +1,1 @@
+document.getElementById("loginfail").hidden = !(options.f == 1)

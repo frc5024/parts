@@ -7,6 +7,16 @@
     </head>
     <body>
         <jsp:include page="layouts/nav.jsp" />
+
+            
+            <div class="alert alert-danger container" role="alert" id="loginfail" hidden > 
+                Login failed: Invalid credentials
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        
         
         <div class="container">
         <div style="height:20vh;"></div>
@@ -31,6 +41,10 @@
         </div>
 
         <jsp:include page="layouts/footer.jsp" />
+
+        <%-- Handle Alert for login --%>
+        <script src="static/js/options.js"></script>
+        <script src="static/js/login.js"></script>
     </body>
 </html>
 

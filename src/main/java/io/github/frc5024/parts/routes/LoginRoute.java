@@ -23,10 +23,21 @@ public class LoginRoute extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
 
-        // Redirect to home
-        Redirect.redirTo(resp, "/parts");
+        // TODO: Handle login logic here
+        boolean success = false;
+
+        if (success) {
+
+            // Redirect to home
+            Redirect.redirTo(resp, "/parts");
+
+        } else {
+
+            // Go back to login screen
+            Redirect.redirTo(resp, "login?f=1");
+
+        }
     }
 
 }
