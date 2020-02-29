@@ -21,7 +21,7 @@
 
         <%-- Admin Actions --%>
         <button  class="btn btn-primary mb-2" onclick="document.location = '/parts/useradmin';">Edit Users</button>
-        <button  class="btn btn-primary mb-2" onclick="document.location = '/parts/admin/items';">Edit Items</button>
+        <button  class="btn btn-primary mb-2" onclick="document.location = '/parts/itemadmin';">Edit Items</button>
         <button  class="btn btn-danger mb-2" onclick="document.location = '/parts/admin/kill';">Shut Down</button>
         
         </div>

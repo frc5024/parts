@@ -24,6 +24,15 @@ public class DB {
         public int perm;
     }
 
+    public class ItemInfo {
+        public String name;
+        public int cost;
+        public int quantity;
+        public String home;
+        public String locations;
+        public String info;
+    }
+
     private DB() throws SQLException {
 
         // Connect to DB
@@ -90,6 +99,23 @@ public class DB {
     }
 
     /**
+     * Add an item
+     * 
+     * @param name      Item name
+     * @param cost      Item cost
+     * @param quantity  Item quantity
+     * @param home      Item home
+     * @param locations Item locations
+     * @param info      Item info
+     * @throws SQLException
+     */
+    public void addItem(String name, int cost, int quantity, String home, String locations, String info)
+            throws SQLException {
+        stmt.execute(String.format("insert into parts values('%s', %d, %d, '%s', '%s', '%s')", name, cost, quantity,
+                home, locations, info));
+    }
+
+    /**
      * Get the password hash for a user
      * 
      * @param username Username
@@ -136,6 +162,34 @@ public class DB {
     }
 
     /**
+     * Get a list of all items
+     * 
+     * @return All items
+     * @throws SQLException
+     */
+    public ArrayList<ItemInfo> getAllItemInfo() throws SQLException {
+        ResultSet parts = stmt.executeQuery("select * from parts");
+
+        ArrayList<ItemInfo> output = new ArrayList<>();
+
+        while (parts.next()) {
+
+            // Add output
+            ItemInfo p = new ItemInfo();
+            p.name = parts.getString("uname");
+            p.cost = parts.getInt("cost");
+            p.quantity = parts.getInt("quantity");
+            p.home = parts.getString("home");
+            p.locations = parts.getString("knownlocs");
+            p.info = parts.getString("info");
+            output.add(p);
+        }
+
+        return output;
+
+    }
+
+    /**
      * Get the user permissions
      * 
      * @param username Username
@@ -172,6 +226,17 @@ public class DB {
     public void rmUser(String username) throws SQLException {
         SimpleLogger.log("DB", "Deleting " + username);
         stmt.execute(String.format("delete from user where uname='%s'", username));
+    }
+
+    /**
+     * Remove an item
+     * 
+     * @param name Item name
+     * @throws SQLException
+     */
+    public void rmItem(String name) throws SQLException {
+        SimpleLogger.log("DB", "Deleting " + name);
+        stmt.execute(String.format("delete from parts where uname='%s'", name));
     }
 
 }
