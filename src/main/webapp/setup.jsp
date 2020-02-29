@@ -17,7 +17,7 @@
 
         <h2>Database Setup</h2>
         <hr>
-        <p>The 5024 parts management tool uses a local database stored in your "User" folder. Please configure an admin user account to get started.</p>
+        <p>The 5024 parts management tool uses a local database stored in your "User" folder. Please configure an admin user account to get started. <strong>If a database is already set up, it will be overwritten.</strong></p>
 
          <form class="form" method="POST">
             <div class="form-group mb-2">
