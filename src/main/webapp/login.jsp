@@ -29,11 +29,11 @@
         <form class="form" method="POST">
             <div class="form-group mb-2">
                 <label for="username" class="sr-only">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
             </div><br>
             <div class="form-group mb-2">
                 <label for="password" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div><br>
             <button type="submit" class="btn btn-primary mb-2">Authenticate</button>
         </form>

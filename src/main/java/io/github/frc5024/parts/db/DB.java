@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.h2.Driver;
+
 import ca.retrylife.simplelogger.SimpleLogger;
 
 public class DB {
@@ -20,10 +22,17 @@ public class DB {
         // Connect to DB
         SimpleLogger.log("DB", "Connecting to DB");
 
-        conn = DriverManager.getConnection("jdbc:h2:5024partsdb", "raider", "robotics");
+        try {
+            Class.forName("org.h2.Driver");
+        } catch (ClassNotFoundException e) {
+            SimpleLogger.log("DB", "Failed to register H2 Driver");
+        }
+
+        conn = DriverManager.getConnection("jdbc:h2:mem:./5024partsdb", "raider", "robotics");
         SimpleLogger.log("DB", "Connected");
 
-        stmt = conn.createStatement();       
+        stmt = conn.createStatement();
+        SimpleLogger.log("DB", "Created statement");
 
     }
 
@@ -43,13 +52,19 @@ public class DB {
     public void initDB() throws SQLException {
 
         // Drop old tables
-        stmt.execute("drop table users");
-        stmt.execute("drop table parts");
+        try {
+            stmt.execute("drop table user");
+            stmt.execute("drop table parts");
+            SimpleLogger.log("DB", "Dropped tables");
+        } catch (SQLException e) {
+            SimpleLogger.log("DB", "No tables to drop, dropping none");
+        }
 
         // Create tables
-        stmt.execute("create table user(uname varchar(128) primary key, hash varchar(128), permissions int)");
-        stmt.execute(
-                "create table parts(uname varchar(128) primary key, cost int, home varchar(1024), info varchar(8192))");
+        stmt.execute("create table user(uname varchar(128), hash varchar(128), permissions int)");
+        // stmt.execute(
+        //         "create table parts(uname varchar(128) cost int, home varchar(1024), info varchar(8192))");
+        SimpleLogger.log("DB", "Built tables");
     }
 
     /**
@@ -70,7 +85,8 @@ public class DB {
      * @return Password hash
      */
     public String getUserHash(String username) throws SQLException {
-        ResultSet users = stmt.executeQuery("select * from users");
+        ResultSet users = stmt.executeQuery("select * from user");
+
 
         while (users.next()) {
 
@@ -92,7 +108,7 @@ public class DB {
      * @throws SQLException
      */
     public int getUserPerms(String username) throws SQLException {
-        ResultSet users = stmt.executeQuery("select * from users");
+        ResultSet users = stmt.executeQuery("select * from user");
 
         while (users.next()) {
 

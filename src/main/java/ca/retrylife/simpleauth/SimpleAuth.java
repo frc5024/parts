@@ -54,6 +54,11 @@ public class SimpleAuth {
 	 */
 	public String hash(String data) {
 
+		// Handle null data
+		if (data == null) {
+			data = "";
+		}
+
 		// Derived from: https://stackoverflow.com/a/2861125/12481555
 		byte[] salt = new byte[HASH_SIZE / 8];
 		RANDOM.nextBytes(salt);

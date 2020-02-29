@@ -1,5 +1,7 @@
 package io.github.frc5024.parts.auth;
 
+import java.sql.SQLException;
+
 import ca.retrylife.simpleauth.SimpleAuth;
 import ca.retrylife.simplelogger.SimpleLogger;
 import io.github.frc5024.parts.db.DB;
@@ -45,8 +47,9 @@ public class AuthenticationService {
 
                 return true;
             }
-        } catch (java.sql.SQLException e) {
+        } catch (SQLException e) {
             SimpleLogger.log("AuthenticationService", "SQL Error");
+            e.printStackTrace();
             return false;
         }
 
