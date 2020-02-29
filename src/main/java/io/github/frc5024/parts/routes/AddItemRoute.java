@@ -68,6 +68,9 @@ public class AddItemRoute extends HttpServlet {
             SimpleLogger.log("AddItemRoute", "Could not search for item");
         }
 
+        // Sanitize description
+        description = description.replaceAll("\n", "<br>");
+
         SimpleLogger.log("AddItemRoute", String.format(
                 "Adding %dx %s to the database with a cost of $%d, and a home of: %s", quantity, name, cost, home));
 

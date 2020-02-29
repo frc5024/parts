@@ -79,6 +79,38 @@ public class IndexRoute extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // Get all items
+        ArrayList<ItemInfo> allItems = new ArrayList<>();
+        try {
+            allItems = DB.getInstance().getAllItemInfo();
+        } catch (SQLException e) {
+            SimpleLogger.log("IndexRoute", "Failed to read items");
+            e.printStackTrace();
+        }
+
+        // Get keyword
+        String keyword = req.getParameter("search");
+
+        SimpleLogger.log("IndexRoute", "User searched for: " + keyword);
+
+        // Find all items containing search term
+        ArrayList<ItemInfo> items = new ArrayList<>();
+        for (ItemInfo i : allItems) {
+
+            // Check if the search term is in the item data
+            boolean inName = i.name.toUpperCase().contains(keyword.toUpperCase());
+            boolean inInfo = i.info.toUpperCase().contains(keyword.toUpperCase());
+            boolean inLocations = i.locations.toUpperCase().contains(keyword.toUpperCase());
+            if (inName || inInfo || inLocations) {
+
+                // Add the item to the list
+                items.add(i);
+            }
+        }
+
+        // Push page
+        pushPage(items, req, resp);
+
     }
 
     @Override

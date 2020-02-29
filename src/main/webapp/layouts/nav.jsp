@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light fixed-top bg-light">
     <div class="container">
         <a class="navbar-brand" href="/parts">5024 Inventory</a>
         

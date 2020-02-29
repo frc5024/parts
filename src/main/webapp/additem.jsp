@@ -9,7 +9,7 @@
         <jsp:include page="layouts/nav.jsp" />        
         
         <div class="container">
-        <div style="height:5vh;"></div>
+        <div style="height:10vh;"></div>
         <div class="login-container">
 
         <h2>Add an Item</h2>
