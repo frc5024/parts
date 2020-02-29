@@ -34,6 +34,13 @@ public class IndexRoute extends HttpServlet {
 
         // Build a list of cards
         StringBuilder sb = new StringBuilder();
+
+        // Handle no items
+        if (items.size() == 0) {
+            sb.append("<div class='inv-item card border-secondary'><div class='card-header'>No items found.</div></div>");
+        }
+
+        // Fill cards
         for (ItemInfo i : items) {
 
             // Build locations list
