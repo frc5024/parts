@@ -29,15 +29,6 @@
             </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="text" class="form-control" value="RoboRIO" name="name"></td>
-            <td><input type="text" class="form-control" value="450" name="name"></td>
-            <td><input type="text" class="form-control" value="3" name="name"></td>
-            <td><input type="text" class="form-control" value="Electronics bin" name="name"></td>
-            <td>Darth Raider,Practice Bot,MiniBot</td>
-            <td><textarea type="text" class="form-control" value="..." name="name" rows="3">...</textarea></td>
-            <td><button type="submit" class="btn btn-primary">Update</button><br><button  class="btn btn-danger" onclick="delItem('RoboRIO');">Delete</button></td>
-            </tr>
         ${items}
         </tbody>
         </table>
