@@ -36,6 +36,12 @@
                         <hr>
                         <h5 class="card-title">Known Locations</h5>
 
+                        <ul>
+                        <li><a onclick="delLocation('RoboRIO', 'Darth Raider');" href="#"><span class="badge badge-danger">X </span></a> Darth Raider</li>
+                        <li><a onclick="delLocation('RoboRIO', 'Darth Raider');" href="#"><span class="badge badge-danger">X </span></a> Practice Bot</li>
+                        <li><a onclick="delLocation('RoboRIO', 'Darth Raider');" href="#"><span class="badge badge-danger">X </span></a> MiniBot</li>
+                        </ul>
+
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Add Location" aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">+</button>

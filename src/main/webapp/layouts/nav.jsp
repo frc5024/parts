@@ -4,7 +4,7 @@
         
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="/parts/admin" id="admin-btn-nav" hidden>Admin</a>
+                <a class="nav-link" href="/parts/admin" id="admin-btn-nav" hidden><span class="badge badge-danger">Admin</span></a>
             </li>
         </ul>
 
