@@ -1,0 +1,17 @@
+.items{
+    max-width:750;
+    margin:auto;
+}
+
+.inv-item{
+    width:100%;
+}
+
+.item-params{
+    white-space: nowrap;
+}
+
+.item-params>p{
+    width: 100px;
+    display: inline-block;
+}
