@@ -17,13 +17,19 @@
 
         <h2>Database Setup</h2>
         <hr>
-        <p>The 5024 parts management tool uses Google APIs to read inventory data. 
-        Please sign in with an account that can access the inventory sheet. Your account 
-        can not be accessed by other users, and is only used for backend database setup.</p>
+        <p>The 5024 parts management tool uses a local database stored in your "User" folder. Please configure an admin user account to get started.</p>
 
-        <br>
-
-        <a href=""><img src="static/img/google-auth.png"></a>
+         <form class="form" method="POST">
+            <div class="form-group mb-2">
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username">
+            </div><br>
+            <div class="form-group mb-2">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div><br>
+            <button type="submit" class="btn btn-primary mb-2">Create User</button>
+        </form>
 
         
         </div>
