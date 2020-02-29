@@ -39,6 +39,7 @@ public class SetupRoute extends HttpServlet {
         } catch (SQLException e) {
             SimpleLogger.log("Setup", "Failed to create a new DB");
             resp.getOutputStream().print("Failed to init DB. Try again");
+            e.printStackTrace();
             return;
         }
 

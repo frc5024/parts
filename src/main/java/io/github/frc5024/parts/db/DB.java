@@ -62,8 +62,8 @@ public class DB {
 
         // Create tables
         stmt.execute("create table user(uname varchar(128), hash varchar(128), permissions int)");
-        // stmt.execute(
-        //         "create table parts(uname varchar(128) cost int, home varchar(1024), info varchar(8192))");
+        stmt.execute(
+                "create table parts(uname varchar(128), cost int, home varchar(1024), info varchar(8192))");
         SimpleLogger.log("DB", "Built tables");
 
         conn.commit();
