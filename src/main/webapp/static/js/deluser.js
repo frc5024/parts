@@ -4,8 +4,6 @@ function delUser(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user })
     }).then(() => {
-        location.reload(); 
+        location.reload();
     })
-
-    
 }
