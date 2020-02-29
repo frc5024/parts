@@ -28,7 +28,7 @@ public class DB {
             SimpleLogger.log("DB", "Failed to register H2 Driver");
         }
 
-        conn = DriverManager.getConnection("jdbc:h2:mem:./5024partsdb", "raider", "robotics");
+        conn = DriverManager.getConnection("jdbc:h2:~/5024parts/5024partsdb2", "raider", "robotics");
         SimpleLogger.log("DB", "Connected");
 
         stmt = conn.createStatement();
@@ -65,6 +65,9 @@ public class DB {
         // stmt.execute(
         //         "create table parts(uname varchar(128) cost int, home varchar(1024), info varchar(8192))");
         SimpleLogger.log("DB", "Built tables");
+
+        conn.commit();
+        SimpleLogger.log("DB", "Wrote new table");
     }
 
     /**
