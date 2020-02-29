@@ -40,7 +40,7 @@
         </div>
 
         <jsp:include page="layouts/footer.jsp" />
-        <script src="/parts/static/js/deluser.js"></script>
+        <script src="/parts/static/js/manageitems.js"></script>
     </body>
 </html>
 

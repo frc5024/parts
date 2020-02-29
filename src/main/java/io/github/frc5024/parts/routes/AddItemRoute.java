@@ -13,6 +13,7 @@ import ca.retrylife.simplelogger.SimpleLogger;
 import ca.retrylife.webtools.Redirect;
 import io.github.frc5024.parts.auth.AuthenticationService;
 import io.github.frc5024.parts.db.DB;
+import io.github.frc5024.parts.db.DB.ItemInfo;
 
 @WebServlet("/additem")
 public class AddItemRoute extends HttpServlet {
@@ -47,12 +48,32 @@ public class AddItemRoute extends HttpServlet {
         String home = req.getParameter("home");
         String description = req.getParameter("description");
 
+        // Get a pre-existing location if this item is being updated
+        String location = home;
+        try {
+            for (ItemInfo i : DB.getInstance().getAllItemInfo()) {
+
+                // Check if i is this item
+                if (i.name.equals(name)) {
+
+                    // Make a call to delete this item so it can be replaced
+                    DB.getInstance().rmItem(i.name);
+
+                    // Get the item location
+                    location = i.locations;
+                    
+                }
+            }
+        } catch (SQLException e) {
+            SimpleLogger.log("AddItemRoute", "Could not search for item");
+        }
+
         SimpleLogger.log("AddItemRoute", String.format(
                 "Adding %dx %s to the database with a cost of $%d, and a home of: %s", quantity, name, cost, home));
 
         // Add item to DB
         try {
-            DB.getInstance().addItem(name, cost, quantity, home, "", description);
+            DB.getInstance().addItem(name, cost, quantity, home, location, description);
         } catch (SQLException e) {
             SimpleLogger.log("AddItemRoute", "Failed to add item due to SQLException");
         }
@@ -74,11 +95,11 @@ public class AddItemRoute extends HttpServlet {
 
         SimpleLogger.log("AddItemRoute", "Request made to delete item: " + name);
 
-        // Try to delete the user
+        // Try to delete the item
         try {
             DB.getInstance().rmItem(name);
         } catch (SQLException e) {
-            SimpleLogger.log("AddUserRoute", "Failed to delete user: " + name);
+            SimpleLogger.log("AddItemRoute", "Failed to delete item: " + name);
         }
     }
 

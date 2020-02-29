@@ -42,15 +42,21 @@ public class ItemAdminRoute extends HttpServlet {
         StringBuilder sb = new StringBuilder();
 
         // Build a row for each item
+        int j = 0;
         for (ItemInfo i : items) {
 
-            sb.append(String.format("<tr><td><input type='text' class='form-control' value='%s' id='name' name='name'></td>"
-                    + "<td><input type='text' class='form-control' value='%d' id='cost' name='cost'></td>"
-                    + "<td><input type='text' class='form-control' value='%d' id='quantity' name='quantity'></td>"
-                    + "<td><input type='text' class='form-control' value='%s' id='home' name='home'></td>"
-                    + "<td>%s</td>"
-                    + "<td><textarea type='text' class='form-control' id='description' name='description' rows='3'>%s</textarea></td>"
-                    + "<td><button type='submit' class='btn btn-primary' onclick='editItem(\"%s\");'>Update</button><br><button  class='btn btn-danger' onclick='delItem(\"%s\");'>Delete</button></td></tr>", i.name, i.cost, i.quantity, i.home, i.locations, i.info, i.name, i.name));
+            sb.append(String.format(
+                    "<tr><form method='POST' action='/parts/additem' id='item-%d'></form><td><input  type='text' class='form-control' form='item-%d' value='%s' id='name' name='name'></td>"
+                            + "<td><input type='text' class='form-control' form='item-%d' value='%d' id='cost' name='cost'></td>"
+                            + "<td><input type='text' class='form-control' form='item-%d' value='%d' id='quantity' name='quantity'></td>"
+                            + "<td><input type='text' class='form-control' form='item-%d' value='%s' id='home' name='home'></td>"
+                            + "<td>%s</td>"
+                            + "<td><textarea type='text' class='form-control' id='description' form='item-%d'  name='description' rows='3'>%s</textarea></td>"
+                            + "<td><button type='submit' form='item-%d' class='btn btn-primary'>Update</button></td></form>"
+                            + "<td><button  class='btn btn-danger' onclick='delItem(\"%s\");'>Delete</button></td></tr>",
+                            j,j, i.name,j, i.cost,j, i.quantity,j, i.home, i.locations,j, i.info, j,i.name));
+
+            j++;
         }
 
         // Push list of items
@@ -58,6 +64,11 @@ public class ItemAdminRoute extends HttpServlet {
 
         // Display the items admin page
         req.getRequestDispatcher("itemadmin.jsp").forward(req, resp);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 

@@ -22,12 +22,22 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name">
             </div><br>
             <div class="form-group mb-2">
-                <label for="quantity" class="sr-only">Quantity</label>
-                <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">#</div>
+                    </div>
+                    <label for="quantity" class="sr-only">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+                </div>
             </div><br>
             <div class="form-group mb-2">
-                <label for="cost" class="sr-only">Cost</label>
-                <input type="text" class="form-control" id="cost" name="cost" placeholder="Cost">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                    </div>
+                    <label for="cost" class="sr-only">Cost</label>
+                    <input type="number" class="form-control" id="cost" name="cost" placeholder="Cost">
+                </div>
             </div><br>
             <div class="form-group mb-2">
                 <label for="home" class="sr-only">Home</label>
