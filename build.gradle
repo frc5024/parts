@@ -41,6 +41,12 @@ dependencies {
     // Servlets
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
+    // Google
+    compile 'com.google.api-client:google-api-client:1.30.4'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.30.4'
+    compile 'com.google.apis:google-api-services-sheets:v4-rev581-1.25.0'
+
+
     // // https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper
     // compile group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '10.0.0-M1'
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ca.retrylife.webtools.Redirect;
+import io.github.frc5024.parts.auth.AuthenticationService;
 
 @WebServlet("/login")
 public class LoginRoute extends HttpServlet {
@@ -20,10 +21,12 @@ public class LoginRoute extends HttpServlet {
         // Determine if this is a logout request
         String logout = req.getParameter("logout");
         if (logout != null && logout.equals("1")) {
-            // TODO: Handle backend logout here
+            // Log out of the backend
+            AuthenticationService.getInstance().logout();
 
             // Redirect to home to force a client logout
-            Redirect.redirTo(resp, String.format("/parts?loggedIn=%s&admin=%s", false, false));
+            Redirect.redirTo(resp, String.format("/parts?loggedIn=%s&admin=%s",
+                    AuthenticationService.getInstance().loggedIn(), AuthenticationService.getInstance().hasAdmin()));
         } else {
 
             // Serve the login view
@@ -34,14 +37,18 @@ public class LoginRoute extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // TODO: Handle login logic here
-        boolean success = true;
-        boolean hasAdmin = false;
+        // Read post data
+        String user = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        // Handle login
+        boolean success = AuthenticationService.getInstance().login(user, password);
 
         if (success) {
 
             // Redirect to home
-            Redirect.redirTo(resp, String.format("/parts?loggedIn=%s&admin=%s", true, hasAdmin));
+            Redirect.redirTo(resp, String.format("/parts?loggedIn=%s&admin=%s",
+                    AuthenticationService.getInstance().loggedIn(), AuthenticationService.getInstance().hasAdmin()));
 
         } else {
 

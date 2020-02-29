@@ -28,8 +28,8 @@
 
         <form class="form" method="POST">
             <div class="form-group mb-2">
-                <label for="email" class="sr-only">Email</label>
-                <input type="text" class="form-control" id="email" placeholder="Email">
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username">
             </div><br>
             <div class="form-group mb-2">
                 <label for="password" class="sr-only">Password</label>
