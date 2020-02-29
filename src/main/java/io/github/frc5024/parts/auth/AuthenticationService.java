@@ -14,6 +14,7 @@ public class AuthenticationService {
 
     // Auth status
     private boolean loggedIn, adminEnabled = false;
+    
 
     private AuthenticationService() {
 

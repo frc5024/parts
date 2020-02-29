@@ -40,7 +40,8 @@ public class UserAdminRoute extends HttpServlet {
         StringBuilder sb = new StringBuilder();
 
         for (UserInfo u : users) {
-            sb.append(String.format("<tr><td>%s</td><td>%s</td><td>%d</td></tr>", u.username, u.hash, u.perm));
+            sb.append(String.format(
+                    "<tr><td>%s</td><td>%s</td><td>%d</td><td><button class='btn btn-danger mb-2' onclick='delUser(\"%s\");'>X</button></td></tr>", u.username, u.hash, u.perm, u.username));
         }
 
         req.setAttribute("users", sb.toString());

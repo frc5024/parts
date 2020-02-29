@@ -58,8 +58,6 @@ public class AddUserRoute extends HttpServlet {
         Redirect.redirTo(resp, "/parts/useradmin");
     }
 
-    
-
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Only display if perms are obtained
@@ -73,7 +71,12 @@ public class AddUserRoute extends HttpServlet {
 
         SimpleLogger.log("AddUserRoute", "Request made to delete user: " + user);
 
-        // TODO: Verify user is not current & delete from DB
+        // Try to delete the user
+        try {
+            DB.getInstance().rmUser(user);
+        } catch (SQLException e) {
+            SimpleLogger.log("AddUserRoute", "Failed to delete user: " + user);
+        }
     }
 
 }

@@ -110,6 +110,12 @@ public class DB {
 
     }
 
+    /**
+     * Get a list of all users
+     * 
+     * @return All users
+     * @throws SQLException
+     */
     public ArrayList<UserInfo> getAllUserInfo() throws SQLException {
         ResultSet users = stmt.executeQuery("select * from user");
 
@@ -125,10 +131,8 @@ public class DB {
             output.add(u);
         }
 
-
         return output;
-        
-        
+
     }
 
     /**
@@ -157,6 +161,17 @@ public class DB {
         conn.close();
         SimpleLogger.log("DB", "Closed");
 
+    }
+
+    /**
+     * Delete a user from the DB
+     * 
+     * @param username Username
+     * @throws SQLException
+     */
+    public void rmUser(String username) throws SQLException {
+        SimpleLogger.log("DB", "Deleting " + username);
+        stmt.execute(String.format("delete from user where uname='%s'", username));
     }
 
 }
