@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.h2.Driver;
 
@@ -17,6 +18,12 @@ public class DB {
     private Connection conn;
     private Statement stmt;
 
+    public class UserInfo {
+        public String username;
+        public String hash;
+        public int perm;
+    }
+
     private DB() throws SQLException {
 
         // Connect to DB
@@ -28,7 +35,8 @@ public class DB {
             SimpleLogger.log("DB", "Failed to register H2 Driver");
         }
 
-        conn = DriverManager.getConnection("jdbc:h2:~/5024parts/5024partsdb2", "raider", "robotics");
+        conn = DriverManager.getConnection("jdbc:h2:~/5024parts/5024partsdb2;AUTO_SERVER=TRUE", "raider", "robotics");
+        conn.setAutoCommit(true);
         SimpleLogger.log("DB", "Connected");
 
         stmt = conn.createStatement();
@@ -90,7 +98,6 @@ public class DB {
     public String getUserHash(String username) throws SQLException {
         ResultSet users = stmt.executeQuery("select * from user");
 
-
         while (users.next()) {
 
             // Check if user matches username
@@ -101,6 +108,27 @@ public class DB {
 
         return null;
 
+    }
+
+    public ArrayList<UserInfo> getAllUserInfo() throws SQLException {
+        ResultSet users = stmt.executeQuery("select * from user");
+
+        ArrayList<UserInfo> output = new ArrayList<>();
+
+        while (users.next()) {
+
+            // Add output
+            UserInfo u = new UserInfo();
+            u.username = users.getString("uname");
+            u.hash = users.getString("hash");
+            u.perm = users.getInt("permissions");
+            output.add(u);
+        }
+
+
+        return output;
+        
+        
     }
 
     /**
@@ -122,6 +150,13 @@ public class DB {
         }
 
         return 0;
+    }
+
+    public void close() throws SQLException {
+        stmt.close();
+        conn.close();
+        SimpleLogger.log("DB", "Closed");
+
     }
 
 }

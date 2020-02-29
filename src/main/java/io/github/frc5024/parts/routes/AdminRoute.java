@@ -22,7 +22,8 @@ public class AdminRoute extends HttpServlet {
         if (AuthenticationService.getInstance().hasAdmin()) {
             req.getRequestDispatcher("admin.jsp").forward(req, resp);
         } else {
-            Redirect.redirTo(resp, "/parts");
+            Redirect.redirTo(resp, String.format("/parts?loggedIn=%s&admin=%s", false, false));
         }
+
     }
 }

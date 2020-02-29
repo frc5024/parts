@@ -20,7 +20,7 @@
         <p>Some basic actions can be performed from the admin panel. Advanced operations can be executed from the SQL control panel.</p>
 
         <%-- Admin Actions --%>
-        <button  class="btn btn-primary mb-2" onclick="document.location = '/parts/admin/users';">Edit Users</button>
+        <button  class="btn btn-primary mb-2" onclick="document.location = '/parts/useradmin';">Edit Users</button>
         <button  class="btn btn-primary mb-2" onclick="document.location = '/parts/admin/items';">Edit Items</button>
         <button  class="btn btn-danger mb-2" onclick="document.location = '/parts/admin/kill';">Shut Down</button>
         

@@ -15,6 +15,9 @@ import javax.crypto.spec.PBEKeySpec;
 import ca.retrylife.simplelogger.SimpleLogger;
 import ca.retrylife.util.MathUtils;
 
+/**
+ * A simple authentication tool using HMAC
+ */
 public class SimpleAuth {
 
 	/* Constants */
