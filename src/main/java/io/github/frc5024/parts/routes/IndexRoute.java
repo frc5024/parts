@@ -76,7 +76,6 @@ public class IndexRoute extends HttpServlet {
             allItems = DB.getInstance().getAllItemInfo();
         } catch (SQLException e) {
             SimpleLogger.log("IndexRoute", "Failed to read items");
-            e.printStackTrace();
         }
 
         // Push page

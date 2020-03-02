@@ -6,17 +6,7 @@
 
     </head>
     <body>
-        <jsp:include page="layouts/nav.jsp" />
-
-            
-            <div class="alert alert-danger container" role="alert" id="loginfail" hidden > 
-                Login failed: Invalid credentials
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        
+        <jsp:include page="layouts/nav.jsp" />       
         
         <div class="container">
         <div style="height:20vh;"></div>
@@ -24,6 +14,14 @@
 
         <h2>Login</h2>
         <hr>
+        <div class="alert alert-danger container" role="alert" id="loginfail" hidden > 
+            Login failed: Invalid credentials
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <p>Team leads, Mentors, and Developers can log in to access management features</p>
 
         <form class="form" method="POST">

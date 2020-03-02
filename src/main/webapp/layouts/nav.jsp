@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light fixed-top bg-light">
     <div class="container">
-        <a class="navbar-brand" href="/parts">5024 Inventory</a>
+        <a class="navbar-brand" href="/parts/app">5024 Inventory</a>
         
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
